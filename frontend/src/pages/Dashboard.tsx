@@ -65,7 +65,7 @@ export default function Dashboard() {
   const data = summary.data
   const loading = summary.isLoading || bills.isLoading
   const firstName = user?.fullName?.split(' ')[0] ?? 'there'
-  const society = user?.apartmentName ?? (user?.role === 'SUPER_ADMIN' ? 'All societies' : 'Your community')
+  const society = user?.apartmentName ?? 'Your community'
 
   return (
     <div className="page-enter">
