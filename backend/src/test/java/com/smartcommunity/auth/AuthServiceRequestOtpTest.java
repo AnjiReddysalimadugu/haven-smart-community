@@ -26,6 +26,8 @@ class AuthServiceRequestOtpTest {
     @Mock LoginOtpRepository otps;
     @Mock PasswordEncoder passwordEncoder;
     @Mock EmailService emailService;
+    @Mock GoogleAuthProperties googleAuthProperties;
+    @Mock GoogleIdTokenService googleIdTokenService;
 
     OtpProperties otpProperties = new OtpProperties();
     AuthService service;
@@ -37,7 +39,9 @@ class AuthServiceRequestOtpTest {
         otpProperties.setRequestWindowMinutes(15);
         otpProperties.setMaxVerifyAttempts(5);
         otpProperties.setExposeInResponse(true);
-        service = new AuthService(jwtService, users, apartments, flats, otps, passwordEncoder, otpProperties, emailService);
+        service = new AuthService(
+                jwtService, users, apartments, flats, otps, passwordEncoder, otpProperties, emailService,
+                googleAuthProperties, googleIdTokenService);
         lenient().when(passwordEncoder.encode(anyString())).thenReturn("hash");
     }
 
