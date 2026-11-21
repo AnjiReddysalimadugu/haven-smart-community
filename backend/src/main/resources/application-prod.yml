@@ -1,0 +1,6 @@
+# Production profile: never seed demo users/data unless explicitly overridden.
+app:
+  demo:
+    enabled: ${DEMO_ENABLED:false}
+  otp:
+    expose-in-response: ${OTP_EXPOSE:false}

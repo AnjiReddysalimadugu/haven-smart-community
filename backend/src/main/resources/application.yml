@@ -1,0 +1,95 @@
+server:
+  # Render/Heroku set PORT; local defaults to 8080
+  port: ${PORT:8080}
+  error:
+    include-message: never
+spring:
+  application:
+    name: smart-community-api
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  jackson:
+    time-zone: Asia/Kolkata
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 6MB
+  mail:
+    host: ${SMTP_HOST:}
+    port: ${SMTP_PORT:587}
+    username: ${SMTP_USERNAME:}
+    password: ${SMTP_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: ${SMTP_STARTTLS:true}
+            required: ${SMTP_STARTTLS_REQUIRED:false}
+          ssl:
+            enable: ${SMTP_SSL:false}
+          connectiontimeout: 10000
+          timeout: 10000
+          writetimeout: 10000
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: never
+  health:
+    # Avoid DOWN/503 when SMTP is intentionally off or credentials not loaded yet
+    mail:
+      enabled: false
+logging:
+  level:
+    org.springframework.web: INFO
+    org.hibernate.SQL: WARN
+    org.springframework.mail: INFO
+app:
+  security:
+    jwt:
+      secret: ${JWT_SECRET}
+      expiration-minutes: ${JWT_EXPIRATION_MINUTES:480}
+  mail:
+    enabled: ${SMTP_ENABLED:false}
+    from: ${SMTP_FROM:noreply@haven.app}
+    from-name: ${SMTP_FROM_NAME:Haven}
+  otp:
+    ttl-minutes: ${OTP_TTL_MINUTES:10}
+    max-requests-per-window: ${OTP_MAX_REQUESTS:5}
+    request-window-minutes: ${OTP_REQUEST_WINDOW_MINUTES:15}
+    max-verify-attempts: ${OTP_MAX_VERIFY_ATTEMPTS:5}
+    # Never enable in production. OTP is emailed via SMTP when SMTP_ENABLED=true.
+    expose-in-response: ${OTP_EXPOSE:false}
+  google:
+    # Set GOOGLE_ENABLED=true and GOOGLE_CLIENT_IDS=webClientId,androidClientId,iosClientId
+    enabled: ${GOOGLE_ENABLED:false}
+    client-ids: ${GOOGLE_CLIENT_IDS:}
+  demo:
+    enabled: ${DEMO_ENABLED:true}
+    password: ${DEMO_PASSWORD:}
+  push:
+    vapid-public-key: ${VAPID_PUBLIC_KEY:}
+    vapid-private-key: ${VAPID_PRIVATE_KEY:}
+    vapid-subject: ${VAPID_SUBJECT:mailto:ops@haven.app}
+  cors:
+    allowed-origin-patterns: ${CORS_ORIGIN_PATTERNS:http://localhost:*,http://127.0.0.1:*,http://192.168.*.*:*,http://10.*.*.*:*,http://172.16.*.*:*,http://172.17.*.*:*,http://172.18.*.*:*,http://172.19.*.*:*,http://172.2*.*.*:*,http://172.30.*.*:*,http://172.31.*.*:*}
+  upload:
+    dir: ${UPLOAD_DIR:uploads}

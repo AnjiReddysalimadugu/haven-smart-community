@@ -1,0 +1,89 @@
+{
+  "expo": {
+    "name": "Haven",
+    "slug": "haven-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "haven",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#061511"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.haven.community",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Haven scans visitor QR passes at the gate.",
+        "NSFaceIDUsageDescription": "Haven uses Face ID to unlock the app quickly.",
+        "NSAppTransportSecurity": {
+          "NSAllowsLocalNetworking": true
+        }
+      }
+    },
+    "android": {
+      "package": "com.haven.community",
+      "adaptiveIcon": {
+        "backgroundColor": "#061511",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "permissions": [
+        "CAMERA",
+        "android.permission.CAMERA",
+        "android.permission.POST_NOTIFICATIONS",
+        "android.permission.USE_BIOMETRIC",
+        "android.permission.USE_FINGERPRINT"
+      ],
+      "predictiveBackGestureEnabled": true,
+      "usesCleartextTraffic": true,
+      "manifestQueries": {
+        "intent": [
+          {
+            "action": "android.intent.action.VIEW",
+            "data": { "scheme": "upi" }
+          }
+        ]
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-web-browser",
+      "expo-secure-store",
+      [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "Allow Haven to use Face ID to unlock the app."
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow Haven to scan visitor QR passes."
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "color": "#C6F26D"
+        }
+      ]
+    ],
+    "extra": {
+      "apiUrl": "http://192.168.1.30:8080/api/v1",
+      "googleWebClientId": "",
+      "googleAndroidClientId": "",
+      "googleIosClientId": "",
+      "eas": {
+        "projectId": "00000000-0000-0000-0000-000000000000"
+      }
+    }
+  }
+}

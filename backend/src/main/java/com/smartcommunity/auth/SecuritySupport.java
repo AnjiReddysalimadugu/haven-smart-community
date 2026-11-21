@@ -1,0 +1,17 @@
+package com.smartcommunity.auth;
+
+import com.smartcommunity.common.UnauthorizedException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
+public final class SecuritySupport {
+    private SecuritySupport() {}
+
+    public static UserPrincipal requireUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth == null || !(auth.getPrincipal() instanceof UserPrincipal principal)) {
+            throw new UnauthorizedException("Authentication is required");
+        }
+        return principal;
+    }
+}

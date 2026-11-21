@@ -1,0 +1,242 @@
+{
+  "generatedAt": "2026-11-21T18:46:40.764Z",
+  "count": 36,
+  "inventory": [
+    {
+      "file": "SUPER_ADMIN\\00-mpin.png",
+      "name": "00-mpin",
+      "text": "SUPER ADMIN\nIncome\nAll societies · live collections & occupancy\nSOCIETIES\n3\nFLATS\n6\nTICKETS\n3\nPLATFORM INCOME\nCOLLECTED\n₹13,600\n93% of ₹14,570 billed\nOutstanding ₹970\n93%\nCOLLECTED",
+      "role": "SUPER_ADMIN"
+    },
+    {
+      "file": "SUPER_ADMIN\\01-home.png",
+      "name": "01-home",
+      "text": "SUPER ADMIN\nIncome\nAll societies · live collections & occupancy\nSOCIETIES\n3\nFLATS\n6\nTICKETS\n3\nPLATFORM INCOME\nCOLLECTED\n₹13,600\n93% of ₹14,570 billed\nOutstanding ₹970\n93%\nCOLLECTED",
+      "role": "SUPER_ADMIN"
+    },
+    {
+      "file": "SUPER_ADMIN\\tab-societies.png",
+      "name": "tab-societies",
+      "text": "SUPER ADMIN\nIncome\nAll societies · live collections & occupancy\nSOCIETIES\n3\nFLATS\n6\nTICKETS\n3\nPLATFORM INCOME\nCOLLECTED\n₹13,600\n93% of ₹14,570 billed\nOutstanding ₹970\n93%\nCOLLECTED",
+      "role": "SUPER_ADMIN",
+      "tab": "Societies"
+    },
+    {
+      "file": "SUPER_ADMIN\\tab-users.png",
+      "name": "tab-users",
+      "text": "SUPER ADMIN\nIncome\nAll societies · live collections & occupancy\nSOCIETIES\n3\nFLATS\n6\nTICKETS\n3\nPLATFORM INCOME\nCOLLECTED\n₹13,600\n93% of ₹14,570 billed\nOutstanding ₹970\n93%\nCOLLECTED",
+      "role": "SUPER_ADMIN",
+      "tab": "Users"
+    },
+    {
+      "file": "SUPER_ADMIN\\tab-residents.png",
+      "name": "tab-residents",
+      "text": "SUPER ADMIN\nIncome\nAll societies · live collections & occupancy\nSOCIETIES\n3\nFLATS\n6\nTICKETS\n3\nPLATFORM INCOME\nCOLLECTED\n₹13,600\n93% of ₹14,570 billed\nOutstanding ₹970\n93%\nCOLLECTED",
+      "role": "SUPER_ADMIN",
+      "tab": "Residents"
+    },
+    {
+      "file": "SUPER_ADMIN\\tab-flats.png",
+      "name": "tab-flats",
+      "text": "SUPER ADMIN\nIncome\nAll societies · live collections & occupancy\nSOCIETIES\n3\nFLATS\n6\nTICKETS\n3\nPLATFORM INCOME\nCOLLECTED\n₹13,600\n93% of ₹14,570 billed\nOutstanding ₹970\n93%\nCOLLECTED",
+      "role": "SUPER_ADMIN",
+      "tab": "Flats"
+    },
+    {
+      "file": "SUPER_ADMIN\\tab-you.png",
+      "name": "tab-you",
+      "text": "SUPER ADMIN\nIncome\nAll societies · live collections & occupancy\nSOCIETIES\n3\nFLATS\n6\nTICKETS\n3\nPLATFORM INCOME\nCOLLECTED\n₹13,600\n93% of ₹14,570 billed\nOutstanding ₹970\n93%\nCOLLECTED",
+      "role": "SUPER_ADMIN",
+      "tab": "You"
+    },
+    {
+      "file": "SUPER_ADMIN\\profile-more.png",
+      "name": "profile-more",
+      "text": "SUPER ADMIN\nIncome\nAll societies · live collections & occupancy\nSOCIETIES\n3\nFLATS\n6\nTICKETS\n3\nPLATFORM INCOME\nCOLLECTED\n₹13,600\n93% of ₹14,570 billed\nOutstanding ₹970\n93%\nCOLLECTED",
+      "role": "SUPER_ADMIN"
+    },
+    {
+      "file": "SUPER_ADMIN\\sheet.png",
+      "name": "sheet",
+      "text": "SUPER ADMIN\nIncome\nAll societies · live collections & occupancy\nSOCIETIES\n3\nFLATS\n6\nTICKETS\n3\nPLATFORM INCOME\nCOLLECTED\n₹13,600\n93% of ₹14,570 billed\nOutstanding ₹970\n93%\nCOLLECTED",
+      "role": "SUPER_ADMIN"
+    },
+    {
+      "file": "APARTMENT_ADMIN\\00-mpin.png",
+      "name": "00-mpin",
+      "text": "SOCIETY OPS\nAdmin desk\nGreen Valley Residency · Arjun\nDUE\n₹970\nTICKETS\n3\nPASSES\n3\n\nUsers\nAccess\n\nResidents\nDirectory\n\nFlats\nOccupancy\n\nPayments\n5 dues\nSOCIETY INCOME\nCOLLECTED\n",
+      "role": "APARTMENT_ADMIN"
+    },
+    {
+      "file": "APARTMENT_ADMIN\\01-home.png",
+      "name": "01-home",
+      "text": "SOCIETY OPS\nAdmin desk\nGreen Valley Residency · Arjun\nDUE\n₹970\nTICKETS\n3\nPASSES\n3\n\nUsers\nAccess\n\nResidents\nDirectory\n\nFlats\nOccupancy\n\nPayments\n5 dues\nSOCIETY INCOME\nCOLLECTED\n",
+      "role": "APARTMENT_ADMIN"
+    },
+    {
+      "file": "APARTMENT_ADMIN\\tab-ops.png",
+      "name": "tab-ops",
+      "text": "SOCIETY OPS\nAdmin desk\nGreen Valley Residency · Arjun\nDUE\n₹970\nTICKETS\n3\nPASSES\n3\n\nUsers\nAccess\n\nResidents\nDirectory\n\nFlats\nOccupancy\n\nPayments\n5 dues\nSOCIETY INCOME\nCOLLECTED\n",
+      "role": "APARTMENT_ADMIN",
+      "tab": "Ops"
+    },
+    {
+      "file": "APARTMENT_ADMIN\\tab-users.png",
+      "name": "tab-users",
+      "text": "SOCIETY OPS\nAdmin desk\nGreen Valley Residency · Arjun\nDUE\n₹970\nTICKETS\n3\nPASSES\n3\n\nUsers\nAccess\n\nResidents\nDirectory\n\nFlats\nOccupancy\n\nPayments\n5 dues\nSOCIETY INCOME\nCOLLECTED\n",
+      "role": "APARTMENT_ADMIN",
+      "tab": "Users"
+    },
+    {
+      "file": "APARTMENT_ADMIN\\zz-error.png",
+      "name": "zz-error",
+      "text": "SOCIETY OPS\nAdmin desk\nGreen Valley Residency · Arjun\nDUE\n₹970\nTICKETS\n3\nPASSES\n3\n\nUsers\nAccess\n\nResidents\nDirectory\n\nFlats\nOccupancy\n\nPayments\n5 dues\nSOCIETY INCOME\nCOLLECTED\n",
+      "role": "APARTMENT_ADMIN",
+      "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByText('Residents', { exact: true }).first()\n    - locator resolved to <div dir=\"auto\" class=\"css-text-146c3p1 r-color-1k7obvh r-fontFamily-1j23gm6 r-fontSize-1inkyih r-letterSpacing-12sm5po\">Residents</div>\n  - attempting click action\n    2 × waiting for element to be visible, enabled and stable\n      - element is inert\n    - retrying click action\n    - waiting 20ms\n    2 × waiting for element to be visible, enabled and stable\n      - element is inert\n    - retrying click action\n      - waiting 100ms\n    57 × waiting for element to be visible, enabled and stable\n       - element is inert\n     - retrying click action\n       - waiting 500ms\n"
+    },
+    {
+      "file": "STAFF\\00-mpin.png",
+      "name": "00-mpin",
+      "text": "DESK\nCollections\nGreen Valley Residency · Meera\nDUE\n₹970\nTICKETS\n3\nPASSES\n3\n\nTake payment\n5 open\n\nTickets\n3 open\nOUTSTANDING DUES\nFlat A-101 · ELECTRICITY\n2096-02 · due 01 Dec\n₹6",
+      "role": "STAFF"
+    },
+    {
+      "file": "STAFF\\01-home.png",
+      "name": "01-home",
+      "text": "DESK\nCollections\nGreen Valley Residency · Meera\nDUE\n₹970\nTICKETS\n3\nPASSES\n3\n\nTake payment\n5 open\n\nTickets\n3 open\nOUTSTANDING DUES\nFlat A-101 · ELECTRICITY\n2096-02 · due 01 Dec\n₹6",
+      "role": "STAFF"
+    },
+    {
+      "file": "STAFF\\tab-desk.png",
+      "name": "tab-desk",
+      "text": "DESK\nCollections\nGreen Valley Residency · Meera\nDUE\n₹970\nTICKETS\n3\nPASSES\n3\n\nTake payment\n5 open\n\nTickets\n3 open\nOUTSTANDING DUES\nFlat A-101 · ELECTRICITY\n2096-02 · due 01 Dec\n₹6",
+      "role": "STAFF",
+      "tab": "Desk"
+    },
+    {
+      "file": "STAFF\\tab-pay.png",
+      "name": "tab-pay",
+      "text": "DESK\nCollections\nGreen Valley Residency · Meera\nDUE\n₹970\nTICKETS\n3\nPASSES\n3\n\nTake payment\n5 open\n\nTickets\n3 open\nOUTSTANDING DUES\nFlat A-101 · ELECTRICITY\n2096-02 · due 01 Dec\n₹6",
+      "role": "STAFF",
+      "tab": "Pay"
+    },
+    {
+      "file": "STAFF\\zz-error.png",
+      "name": "zz-error",
+      "text": "DESK\nCollections\nGreen Valley Residency · Meera\nDUE\n₹970\nTICKETS\n3\nPASSES\n3\n\nTake payment\n5 open\n\nTickets\n3 open\nOUTSTANDING DUES\nFlat A-101 · ELECTRICITY\n2096-02 · due 01 Dec\n₹6",
+      "role": "STAFF",
+      "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByText('Tickets', { exact: true }).first()\n    - locator resolved to <div dir=\"auto\" class=\"css-text-146c3p1 r-color-4rme60 r-fontFamily-1j23gm6 r-fontSize-1enofrn r-letterSpacing-3b040n r-textTransform-tsynxw\">Tickets</div>\n  - attempting click action\n    2 × waiting for element to be visible, enabled and stable\n      - element is inert\n    - retrying click action\n    - waiting 20ms\n    2 × waiting for element to be visible, enabled and stable\n      - element is inert\n    - retrying click action\n      - waiting 100ms\n    57 × waiting for element to be visible, enabled and stable\n       - element is inert\n     - retrying click action\n       - waiting 500ms\n"
+    },
+    {
+      "file": "SECURITY\\00-mpin.png",
+      "name": "00-mpin",
+      "text": "GATE\nScan & allow\nGreen Valley Residency\n\nPass check\nValidate entry or log exit\nPass token\n\nValidate entry\n\nMark exit\n\n\nGate\n\n\nScan\n\n\nPasses\n\n\nYou\nHAVEN\nEnter MPIN\nWelco",
+      "role": "SECURITY"
+    },
+    {
+      "file": "SECURITY\\01-home.png",
+      "name": "01-home",
+      "text": "GATE\nScan & allow\nGreen Valley Residency\n\nPass check\nValidate entry or log exit\nPass token\n\nValidate entry\n\nMark exit\n\n\nGate\n\n\nScan\n\n\nPasses\n\n\nYou",
+      "role": "SECURITY"
+    },
+    {
+      "file": "SECURITY\\tab-gate.png",
+      "name": "tab-gate",
+      "text": "GATE\nScan & allow\nGreen Valley Residency\n\nPass check\nValidate entry or log exit\nPass token\n\nValidate entry\n\nMark exit\n\n\nGate\n\n\nScan\n\n\nPasses\n\n\nYou",
+      "role": "SECURITY",
+      "tab": "Gate"
+    },
+    {
+      "file": "SECURITY\\tab-passes.png",
+      "name": "tab-passes",
+      "text": "GATE\nScan & allow\nGreen Valley Residency\n\nPass check\nValidate entry or log exit\nPass token\n\nValidate entry\n\nMark exit\nLIVE BOARD\nPasses\nRecent visitor tokens — mark exit when th",
+      "role": "SECURITY",
+      "tab": "Passes"
+    },
+    {
+      "file": "SECURITY\\tab-scan.png",
+      "name": "tab-scan",
+      "text": "GATE\nScan & allow\nGreen Valley Residency\n\nPass check\nValidate entry or log exit\nPass token\n\nValidate entry\n\nMark exit\nCamera access\nNeeded to scan visitor QR tokens at the gate.",
+      "role": "SECURITY",
+      "tab": "Scan"
+    },
+    {
+      "file": "SECURITY\\tab-you.png",
+      "name": "tab-you",
+      "text": "GATE\nScan & allow\nGreen Valley Residency\n\nPass check\nValidate entry or log exit\nPass token\n\nValidate entry\n\nMark exit\nCamera access\nNeeded to scan visitor QR tokens at the gate.",
+      "role": "SECURITY",
+      "tab": "You"
+    },
+    {
+      "file": "SECURITY\\profile-more.png",
+      "name": "profile-more",
+      "text": "GATE\nScan & allow\nGreen Valley Residency\n\nPass check\nValidate entry or log exit\nPass token\n\nValidate entry\n\nMark exit\nCamera access\nNeeded to scan visitor QR tokens at the gate.",
+      "role": "SECURITY"
+    },
+    {
+      "file": "SECURITY\\sheet.png",
+      "name": "sheet",
+      "text": "GATE\nScan & allow\nGreen Valley Residency\n\nPass check\nValidate entry or log exit\nPass token\n\nValidate entry\n\nMark exit\nCamera access\nNeeded to scan visitor QR tokens at the gate.",
+      "role": "SECURITY"
+    },
+    {
+      "file": "RESIDENT\\00-mpin.png",
+      "name": "00-mpin",
+      "text": "HAVEN\nPriya\nFlat A-101 · Green Valley Residency\nDUE\n₹271\nTICKETS\n3\nPASSES\n3\n\nPay bills\n4 open invoices\n\nInvite guest\nCreate a visitor pass\n\nGet help\n3 open\n\nReceipts\nPaid invoi",
+      "role": "RESIDENT"
+    },
+    {
+      "file": "RESIDENT\\01-home.png",
+      "name": "01-home",
+      "text": "HAVEN\nPriya\nFlat A-101 · Green Valley Residency\nDUE\n₹271\nTICKETS\n3\nPASSES\n3\n\nPay bills\n4 open invoices\n\nInvite guest\nCreate a visitor pass\n\nGet help\n3 open\n\nReceipts\nPaid invoi",
+      "role": "RESIDENT"
+    },
+    {
+      "file": "RESIDENT\\tab-home.png",
+      "name": "tab-home",
+      "text": "HAVEN\nPriya\nFlat A-101 · Green Valley Residency\nDUE\n₹271\nTICKETS\n3\nPASSES\n3\n\nPay bills\n4 open invoices\n\nInvite guest\nCreate a visitor pass\n\nGet help\n3 open\n\nReceipts\nPaid invoi",
+      "role": "RESIDENT",
+      "tab": "Home"
+    },
+    {
+      "file": "RESIDENT\\tab-bills.png",
+      "name": "tab-bills",
+      "text": "HAVEN\nPriya\nFlat A-101 · Green Valley Residency\nDUE\n₹271\nTICKETS\n3\nPASSES\n3\n\nPay bills\n4 open invoices\n\nInvite guest\nCreate a visitor pass\n\nGet help\n3 open\n\nReceipts\nPaid invoi",
+      "role": "RESIDENT",
+      "tab": "Bills"
+    },
+    {
+      "file": "RESIDENT\\tab-guests.png",
+      "name": "tab-guests",
+      "text": "HAVEN\nPriya\nFlat A-101 · Green Valley Residency\nDUE\n₹271\nTICKETS\n3\nPASSES\n3\n\nPay bills\n4 open invoices\n\nInvite guest\nCreate a visitor pass\n\nGet help\n3 open\n\nReceipts\nPaid invoi",
+      "role": "RESIDENT",
+      "tab": "Guests"
+    },
+    {
+      "file": "RESIDENT\\tab-help.png",
+      "name": "tab-help",
+      "text": "HAVEN\nPriya\nFlat A-101 · Green Valley Residency\nDUE\n₹271\nTICKETS\n3\nPASSES\n3\n\nPay bills\n4 open invoices\n\nInvite guest\nCreate a visitor pass\n\nGet help\n3 open\n\nReceipts\nPaid invoi",
+      "role": "RESIDENT",
+      "tab": "Help"
+    },
+    {
+      "file": "RESIDENT\\tab-you.png",
+      "name": "tab-you",
+      "text": "HAVEN\nPriya\nFlat A-101 · Green Valley Residency\nDUE\n₹271\nTICKETS\n3\nPASSES\n3\n\nPay bills\n4 open invoices\n\nInvite guest\nCreate a visitor pass\n\nGet help\n3 open\n\nReceipts\nPaid invoi",
+      "role": "RESIDENT",
+      "tab": "You"
+    },
+    {
+      "file": "RESIDENT\\profile-more.png",
+      "name": "profile-more",
+      "text": "HAVEN\nPriya\nFlat A-101 · Green Valley Residency\nDUE\n₹271\nTICKETS\n3\nPASSES\n3\n\nPay bills\n4 open invoices\n\nInvite guest\nCreate a visitor pass\n\nGet help\n3 open\n\nReceipts\nPaid invoi",
+      "role": "RESIDENT"
+    },
+    {
+      "file": "RESIDENT\\sheet.png",
+      "name": "sheet",
+      "text": "HAVEN\nPriya\nFlat A-101 · Green Valley Residency\nDUE\n₹271\nTICKETS\n3\nPASSES\n3\n\nPay bills\n4 open invoices\n\nInvite guest\nCreate a visitor pass\n\nGet help\n3 open\n\nReceipts\nPaid invoi",
+      "role": "RESIDENT"
+    }
+  ]
+}

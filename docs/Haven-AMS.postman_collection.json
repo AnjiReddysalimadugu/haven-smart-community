@@ -1,0 +1,1088 @@
+{
+  "info": {
+    "_postman_id": "a7c3e9f1-2b4d-4e8a-9c1f-6d5e0b8a2f31",
+    "name": "Haven AMS — Smart Community API",
+    "description": "Apartment Management System API (`/api/v1`).\n\n**Auth (email + OTP via SMTP)**\n1. Set `SMTP_*` in server `.env` and `SMTP_ENABLED=true`\n2. Request OTP → code arrives in the mailbox\n3. Login with `{ email, otp }`\n\nIf SMTP is off and `OTP_EXPOSE=true`, Request OTP also returns `devOtp` for local testing.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://127.0.0.1:8080/api/v1" },
+    { "key": "token", "value": "" },
+    { "key": "otp", "value": "" },
+    { "key": "loginEmail", "value": "admin@haven.local" },
+    { "key": "apartmentId", "value": "" },
+    { "key": "blockId", "value": "" },
+    { "key": "floorId", "value": "" },
+    { "key": "flatId", "value": "" },
+    { "key": "residentId", "value": "" },
+    { "key": "userId", "value": "" },
+    { "key": "billId", "value": "" },
+    { "key": "visitorId", "value": "" },
+    { "key": "qrToken", "value": "" },
+    { "key": "parkingSlotId", "value": "" },
+    { "key": "complaintId", "value": "" }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Request OTP (Super Admin)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('OTP requested', () => pm.response.to.have.status(200));",
+                  "const data = pm.response.json();",
+                  "pm.collectionVariables.set('loginEmail', 'superadmin@haven.local');",
+                  "if (data.devOtp) pm.collectionVariables.set('otp', data.devOtp);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"superadmin@haven.local\"\n}"
+            },
+            "url": "{{baseUrl}}/auth/otp/request",
+            "description": "Returns `devOtp` when OTP_EXPOSE=true (local)."
+          }
+        },
+        {
+          "name": "Login (Super Admin)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Login OK', () => pm.response.to.have.status(200));",
+                  "const data = pm.response.json();",
+                  "pm.collectionVariables.set('token', data.accessToken);",
+                  "if (data.user && data.user.apartmentId) pm.collectionVariables.set('apartmentId', data.user.apartmentId);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"superadmin@haven.local\",\n  \"otp\": \"{{otp}}\"\n}"
+            },
+            "url": "{{baseUrl}}/auth/login"
+          }
+        },
+        {
+          "name": "Request OTP (Apartment Admin)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const data = pm.response.json();",
+                  "pm.collectionVariables.set('loginEmail', 'admin@haven.local');",
+                  "if (data.devOtp) pm.collectionVariables.set('otp', data.devOtp);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@haven.local\"\n}"
+            },
+            "url": "{{baseUrl}}/auth/otp/request"
+          }
+        },
+        {
+          "name": "Login (Apartment Admin)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Login OK', () => pm.response.to.have.status(200));",
+                  "const data = pm.response.json();",
+                  "pm.collectionVariables.set('token', data.accessToken);",
+                  "if (data.user && data.user.apartmentId) pm.collectionVariables.set('apartmentId', data.user.apartmentId);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@haven.local\",\n  \"otp\": \"{{otp}}\"\n}"
+            },
+            "url": "{{baseUrl}}/auth/login"
+          }
+        },
+        {
+          "name": "Request OTP (Staff)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const data = pm.response.json();",
+                  "if (data.devOtp) pm.collectionVariables.set('otp', data.devOtp);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"staff@haven.local\"\n}"
+            },
+            "url": "{{baseUrl}}/auth/otp/request"
+          }
+        },
+        {
+          "name": "Login (Staff)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const data = pm.response.json();",
+                  "pm.collectionVariables.set('token', data.accessToken);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"staff@haven.local\",\n  \"otp\": \"{{otp}}\"\n}"
+            },
+            "url": "{{baseUrl}}/auth/login"
+          }
+        },
+        {
+          "name": "Request OTP (Security)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const data = pm.response.json();",
+                  "if (data.devOtp) pm.collectionVariables.set('otp', data.devOtp);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"security@haven.local\"\n}"
+            },
+            "url": "{{baseUrl}}/auth/otp/request"
+          }
+        },
+        {
+          "name": "Login (Security)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const data = pm.response.json();",
+                  "pm.collectionVariables.set('token', data.accessToken);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"security@haven.local\",\n  \"otp\": \"{{otp}}\"\n}"
+            },
+            "url": "{{baseUrl}}/auth/login"
+          }
+        },
+        {
+          "name": "Request OTP (Resident)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const data = pm.response.json();",
+                  "if (data.devOtp) pm.collectionVariables.set('otp', data.devOtp);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"resident@haven.local\"\n}"
+            },
+            "url": "{{baseUrl}}/auth/otp/request"
+          }
+        },
+        {
+          "name": "Login (Resident)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const data = pm.response.json();",
+                  "pm.collectionVariables.set('token', data.accessToken);",
+                  "if (data.user && data.user.flatId) pm.collectionVariables.set('flatId', data.user.flatId);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"resident@haven.local\",\n  \"otp\": \"{{otp}}\"\n}"
+            },
+            "url": "{{baseUrl}}/auth/login"
+          }
+        },
+        {
+          "name": "Me",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/auth/me"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "item": [
+        {
+          "name": "Summary",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/dashboard/summary"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Property",
+      "item": [
+        {
+          "name": "List Apartments",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const rows = pm.response.json();",
+                  "if (Array.isArray(rows) && rows.length) {",
+                  "  pm.collectionVariables.set('apartmentId', rows[0].id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/apartments"
+          }
+        },
+        {
+          "name": "Create Apartment",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200 || pm.response.code === 201) {",
+                  "  pm.collectionVariables.set('apartmentId', pm.response.json().id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Sunrise Heights\",\n  \"address\": \"12 MG Road, Hyderabad\",\n  \"timezone\": \"Asia/Kolkata\"\n}"
+            },
+            "url": "{{baseUrl}}/apartments",
+            "description": "SUPER_ADMIN only."
+          }
+        },
+        {
+          "name": "List Blocks",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const rows = pm.response.json();",
+                  "if (Array.isArray(rows) && rows.length) pm.collectionVariables.set('blockId', rows[0].id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/apartments/{{apartmentId}}/blocks"
+          }
+        },
+        {
+          "name": "Create Block",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200 || pm.response.code === 201) {",
+                  "  pm.collectionVariables.set('blockId', pm.response.json().id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apartmentId\": \"{{apartmentId}}\",\n  \"name\": \"Block B\",\n  \"code\": \"B\"\n}"
+            },
+            "url": "{{baseUrl}}/blocks"
+          }
+        },
+        {
+          "name": "List Floors",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const rows = pm.response.json();",
+                  "if (Array.isArray(rows) && rows.length) pm.collectionVariables.set('floorId', rows[0].id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/blocks/{{blockId}}/floors"
+          }
+        },
+        {
+          "name": "Create Floor",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200 || pm.response.code === 201) {",
+                  "  pm.collectionVariables.set('floorId', pm.response.json().id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"blockId\": \"{{blockId}}\",\n  \"floorNumber\": 3,\n  \"name\": \"Floor 3\"\n}"
+            },
+            "url": "{{baseUrl}}/floors"
+          }
+        },
+        {
+          "name": "List Flats (by floor)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const rows = pm.response.json();",
+                  "if (Array.isArray(rows) && rows.length) pm.collectionVariables.set('flatId', rows[0].id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/floors/{{floorId}}/flats"
+          }
+        },
+        {
+          "name": "List All Flats",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const rows = pm.response.json();",
+                  "if (Array.isArray(rows) && rows.length) pm.collectionVariables.set('flatId', rows[0].id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/flats"
+          }
+        },
+        {
+          "name": "Create Flat",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200 || pm.response.code === 201) {",
+                  "  pm.collectionVariables.set('flatId', pm.response.json().id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"floorId\": \"{{floorId}}\",\n  \"flatNumber\": \"B-301\",\n  \"areaSqft\": 1200,\n  \"bedroomCount\": 3\n}"
+            },
+            "url": "{{baseUrl}}/flats"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users (apartment-wise)",
+      "item": [
+        {
+          "name": "List Users",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const rows = pm.response.json();",
+                  "if (Array.isArray(rows) && rows.length) pm.collectionVariables.set('userId', rows[0].id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users?apartmentId={{apartmentId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["users"],
+              "query": [
+                { "key": "apartmentId", "value": "{{apartmentId}}", "description": "Required for super admin filter; ignored for apartment admin (own society)." },
+                { "key": "role", "value": "STAFF", "disabled": true, "description": "Optional: SUPER_ADMIN | APARTMENT_ADMIN | STAFF | SECURITY | RESIDENT" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create User (Staff)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) pm.collectionVariables.set('userId', pm.response.json().id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"staff.demo@example.com\",\n  \"password\": \"TempPass!2026xx\",\n  \"fullName\": \"Demo Staff\",\n  \"role\": \"STAFF\",\n  \"apartmentId\": \"{{apartmentId}}\"\n}"
+            },
+            "url": "{{baseUrl}}/users",
+            "description": "Apartment admin can create STAFF / SECURITY / RESIDENT (apartment auto-scoped).\nSuper admin can also create APARTMENT_ADMIN and SUPER_ADMIN."
+          }
+        },
+        {
+          "name": "Create User (Security)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"security.demo@example.com\",\n  \"password\": \"TempPass!2026xx\",\n  \"fullName\": \"Demo Gate Guard\",\n  \"role\": \"SECURITY\",\n  \"apartmentId\": \"{{apartmentId}}\"\n}"
+            },
+            "url": "{{baseUrl}}/users"
+          }
+        },
+        {
+          "name": "Create User (Apartment Admin)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"aptadmin.demo@example.com\",\n  \"password\": \"TempPass!2026xx\",\n  \"fullName\": \"Demo Society Admin\",\n  \"role\": \"APARTMENT_ADMIN\",\n  \"apartmentId\": \"{{apartmentId}}\"\n}"
+            },
+            "url": "{{baseUrl}}/users",
+            "description": "SUPER_ADMIN only."
+          }
+        },
+        {
+          "name": "Create User (Resident)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "  const u = pm.response.json();",
+                  "  pm.collectionVariables.set('userId', u.id);",
+                  "  pm.collectionVariables.set('residentId', u.id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"resident.demo@example.com\",\n  \"password\": \"TempPass!2026xx\",\n  \"fullName\": \"Demo Resident\",\n  \"role\": \"RESIDENT\",\n  \"apartmentId\": \"{{apartmentId}}\"\n}"
+            },
+            "url": "{{baseUrl}}/users"
+          }
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"staff.demo@example.com\",\n  \"fullName\": \"Demo Staff Updated\",\n  \"password\": \"TempPass!2026yy\"\n}"
+            },
+            "url": "{{baseUrl}}/users/{{userId}}"
+          }
+        },
+        {
+          "name": "Deactivate User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/users/{{userId}}/deactivate"
+          }
+        },
+        {
+          "name": "Activate User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/users/{{userId}}/activate"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Residents",
+      "item": [
+        {
+          "name": "List Residents",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const rows = pm.response.json();",
+                  "if (Array.isArray(rows) && rows.length) pm.collectionVariables.set('residentId', rows[0].id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/residents?apartmentId={{apartmentId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["residents"],
+              "query": [{ "key": "apartmentId", "value": "{{apartmentId}}" }]
+            }
+          }
+        },
+        {
+          "name": "Register Resident",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200 || pm.response.code === 201) {",
+                  "  pm.collectionVariables.set('residentId', pm.response.json().id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"new.resident@example.com\",\n  \"password\": \"TempPass!2026xx\",\n  \"fullName\": \"New Resident\",\n  \"apartmentId\": \"{{apartmentId}}\"\n}"
+            },
+            "url": "{{baseUrl}}/residents"
+          }
+        },
+        {
+          "name": "Get Resident",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/residents/{{residentId}}"
+          }
+        },
+        {
+          "name": "Update Resident",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"new.resident@example.com\",\n  \"fullName\": \"New Resident Updated\"\n}"
+            },
+            "url": "{{baseUrl}}/residents/{{residentId}}"
+          }
+        },
+        {
+          "name": "Deactivate Resident",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/residents/{{residentId}}/deactivate",
+            "description": "Fails if active occupancy exists — release occupancy first."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Occupancy",
+      "item": [
+        {
+          "name": "List Occupancies",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/occupancies?apartmentId={{apartmentId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["occupancies"],
+              "query": [{ "key": "apartmentId", "value": "{{apartmentId}}" }]
+            }
+          }
+        },
+        {
+          "name": "Current Occupancy",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/flats/{{flatId}}/occupancy"
+          }
+        },
+        {
+          "name": "Occupancy History",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/flats/{{flatId}}/occupancy/history"
+          }
+        },
+        {
+          "name": "Allocate Occupancy",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"residentUserId\": \"{{residentId}}\",\n  \"occupancyType\": \"OWNER\",\n  \"notes\": \"Allocated via Postman\"\n}"
+            },
+            "url": "{{baseUrl}}/flats/{{flatId}}/occupancy"
+          }
+        },
+        {
+          "name": "Release Occupancy",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/flats/{{flatId}}/occupancy/release"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Billing & Receipts",
+      "item": [
+        {
+          "name": "List Bills",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const rows = pm.response.json();",
+                  "if (Array.isArray(rows) && rows.length) pm.collectionVariables.set('billId', rows[0].id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/bills"
+          }
+        },
+        {
+          "name": "Create Bill",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200 || pm.response.code === 201) {",
+                  "  pm.collectionVariables.set('billId', pm.response.json().id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"flatId\": \"{{flatId}}\",\n  \"billType\": \"MAINTENANCE\",\n  \"billingPeriod\": \"2026-11\",\n  \"amount\": 3500,\n  \"dueDate\": \"2026-11-30\"\n}"
+            },
+            "url": "{{baseUrl}}/bills",
+            "description": "billType: MAINTENANCE | WATER | ELECTRICITY"
+          }
+        },
+        {
+          "name": "Pay Bill",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 3500,\n  \"method\": \"UPI\",\n  \"reference\": \"UPI-POSTMAN-001\"\n}"
+            },
+            "url": "{{baseUrl}}/bills/{{billId}}/payments"
+          }
+        },
+        {
+          "name": "List Receipts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/receipts"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Visitors",
+      "item": [
+        {
+          "name": "List Visitors",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const rows = pm.response.json();",
+                  "if (Array.isArray(rows) && rows.length) pm.collectionVariables.set('visitorId', rows[0].id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/visitors"
+          }
+        },
+        {
+          "name": "Create Visitor Pass",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200 || pm.response.code === 201) {",
+                  "  const d = pm.response.json();",
+                  "  pm.collectionVariables.set('visitorId', d.id);",
+                  "  pm.collectionVariables.set('qrToken', d.qrToken);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"flatId\": \"{{flatId}}\",\n  \"visitorName\": \"Delivery Partner\",\n  \"mobile\": \"9876543210\",\n  \"visitType\": \"DELIVERY\",\n  \"validityMinutes\": 60\n}"
+            },
+            "url": "{{baseUrl}}/visitors",
+            "description": "Raw `qrToken` returned once — saved to collection variable."
+          }
+        },
+        {
+          "name": "Validate Visitor (entry)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"qrToken\": \"{{qrToken}}\"\n}"
+            },
+            "url": "{{baseUrl}}/visitors/validate"
+          }
+        },
+        {
+          "name": "Exit Visitor (by token)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"qrToken\": \"{{qrToken}}\"\n}"
+            },
+            "url": "{{baseUrl}}/visitors/exit"
+          }
+        },
+        {
+          "name": "Exit Visitor (by id)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/visitors/{{visitorId}}/exit"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Parking",
+      "item": [
+        {
+          "name": "List Parking Slots",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const rows = pm.response.json();",
+                  "if (Array.isArray(rows) && rows.length) pm.collectionVariables.set('parkingSlotId', rows[0].id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/parking-slots"
+          }
+        },
+        {
+          "name": "Create Parking Slot",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200 || pm.response.code === 201) {",
+                  "  pm.collectionVariables.set('parkingSlotId', pm.response.json().id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apartmentId\": \"{{apartmentId}}\",\n  \"slotCode\": \"P-101\",\n  \"vehicleType\": \"FOUR_WHEELER\",\n  \"monthlyCharge\": 1500\n}"
+            },
+            "url": "{{baseUrl}}/parking-slots"
+          }
+        },
+        {
+          "name": "Allocate Slot",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"flatId\": \"{{flatId}}\",\n  \"vehicleNumber\": \"TS09AB1234\"\n}"
+            },
+            "url": "{{baseUrl}}/parking-slots/{{parkingSlotId}}/allocate"
+          }
+        },
+        {
+          "name": "Release Slot",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/parking-slots/{{parkingSlotId}}/release"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Complaints",
+      "item": [
+        {
+          "name": "List Complaints",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const rows = pm.response.json();",
+                  "if (Array.isArray(rows) && rows.length) pm.collectionVariables.set('complaintId', rows[0].id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/complaints"
+          }
+        },
+        {
+          "name": "Create Complaint",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200 || pm.response.code === 201) {",
+                  "  pm.collectionVariables.set('complaintId', pm.response.json().id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"flatId\": \"{{flatId}}\",\n  \"title\": \"Water leakage\",\n  \"category\": \"PLUMBING\",\n  \"description\": \"Kitchen sink leak since morning.\"\n}"
+            },
+            "url": "{{baseUrl}}/complaints"
+          }
+        },
+        {
+          "name": "Update Complaint Status",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"IN_PROGRESS\"\n}"
+            },
+            "url": "{{baseUrl}}/complaints/{{complaintId}}/status",
+            "description": "status: OPEN | IN_PROGRESS | RESOLVED | CLOSED (as supported by API)"
+          }
+        }
+      ]
+    }
+  ]
+}

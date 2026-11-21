@@ -1,0 +1,41 @@
+# Blueprint — optional. Or fill the Render dashboard with the same values.
+services:
+  - type: web
+    name: haven-api
+    runtime: docker
+    rootDir: backend
+    plan: free
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRATION_MINUTES
+        value: "480"
+      - key: DEMO_PASSWORD
+        generateValue: true
+      - key: DEMO_ENABLED
+        value: "true"
+      - key: SMTP_ENABLED
+        value: "false"
+      - key: OTP_EXPOSE
+        value: "true"
+      - key: GOOGLE_ENABLED
+        value: "false"
+      - key: DB_URL
+        fromDatabase:
+          name: haven-db
+          property: connectionString
+      - key: DB_USERNAME
+        fromDatabase:
+          name: haven-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: haven-db
+          property: password
+
+databases:
+  - name: haven-db
+    plan: free
+    databaseName: smart_community
+    user: haven
